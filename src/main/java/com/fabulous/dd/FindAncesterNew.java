@@ -15,7 +15,8 @@ public class FindAncesterNew {
 		}
 		
 		if(root == m && root == n){
-			return new FindAncesterNew(root, true);
+			System.out.println(String.format("true result, root: %s,      result: %s", root.data, root.data));
+				return new FindAncesterNew(root, true);
 		}
 		
 		FindAncesterNew lres = ancesterFinder(root.leftChild, m, n);
@@ -29,16 +30,20 @@ public class FindAncesterNew {
 		}
 		
 		if(lres.node != null && rres.node != null){
+			System.out.println(String.format("true result: root %s, lres %s, rres %s,     result : %s",  root.data, lres.node == null ? null : lres.node.data, rres.node == null ? null : rres.node.data, root.data));;
 			return new FindAncesterNew(root, true);
 		}else if(root == m || root == n){
 			if(lres.node != null || rres.node != null){
+				System.out.println(String.format("true result: root %s, lres %s, rres %s,     result : %s",  root.data, lres.node == null ? null : lres.node.data, rres.node == null ? null : rres.node.data, root.data));;
 				return new FindAncesterNew(root, true);
 			}else{
+				System.out.println(String.format("false result: root %s, lres %s, rres %s,     result : %s",  root.data, lres.node == null ? null : lres.node.data, rres.node == null ? null : rres.node.data, root.data));
 				return new FindAncesterNew(root, false);
 			}
 		}else{
+			System.out.println(String.format("false result: root %s, lres %s, rres %s,     result : %s",  root.data, lres.node == null ? null : lres.node.data, rres.node == null ? null : rres.node.data, lres.node != null? lres.node.data : (rres.node != null ? rres.node.data : "null")));
 			return new FindAncesterNew(lres.node != null? lres.node:rres.node, false);
-		}	
+		}
 		
 	}
 	
@@ -71,14 +76,15 @@ public class FindAncesterNew {
 		
 		//FindAncesterNew fan = new FindAncesterNew();
 		
-		//System.out.println(fca.findAncestor(null,n1,n2).data);
+//		System.out.println(fca.findAncestor(null,n1,n2).data);
 		System.out.println(checkAncester(n1, n4,n4).data);	
 		System.out.println(checkAncester(n1, n6,n7).data);
 		System.out.println(checkAncester(n1, n9,n8).data);
 		System.out.println(checkAncester(n1, n6,n9).data);
 		System.out.println(checkAncester(n1, n1, n2).data);
 		System.out.println(checkAncester(n1, n7,n9).data);
-//		System.out.println(checkAncester(n1, n12,n10).data); //n12 is not in the tree
+		BinaryNode nodeTmp = checkAncester(n1, n12,n10);
+		System.out.println(nodeTmp == null ? "No common ancester!" : nodeTmp.data); //n12 is not in the tree
 
 	}
 	
